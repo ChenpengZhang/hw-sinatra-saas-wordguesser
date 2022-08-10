@@ -73,7 +73,7 @@ class WordGuesserApp < Sinatra::Base
     elsif @game.word == ''
       redirect '/new'
     end
-    if not session[:best]
+    if session[:best] == 'invalid'
       session[:best] = @game.wrong_guesses.length
     else
       session[:best] = [@game.wrong_guesses.length, session[:best]].min

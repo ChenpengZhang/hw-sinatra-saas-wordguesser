@@ -9,6 +9,7 @@ Scenario: game over because I guess the word
   Given I start a new game with word "foobar"
   When I make the following guesses: f,o,b,a,r
   Then I should see "You Win!"
+  And I should see "Your best run is 0 wrong guesses"
 
 Scenario: game over because I run out of guesses
 
