@@ -5,4 +5,15 @@
   <span class="win"><%= @game.word %></span>.
 </div>
 
+<div class="alert alert-success">
+  You made
+  <span class="win"><%= @game.wrong_guesses.length %></span> 
+  wrong guesses.
+</div>
+
+<div class="alert alert-success">
+  Your best run is
+  <span class="win"><%= session[:best] %></span> 
+  wrong guesses.
+</div>
 <%= erb :new %>

@@ -9,6 +9,9 @@ class WordGuesserApp < Sinatra::Base
   
   before do
     @game = session[:game] || WordGuesserGame.new('')
+    if not session[:best]
+      session[:best] = "invalid"
+    end
   end
   
   after do
@@ -67,6 +70,13 @@ class WordGuesserApp < Sinatra::Base
   get '/win' do
     if @game.word_with_guesses.include?('-')
       redirect '/show'
+    elsif @game.word == ''
+      redirect '/new'
+    end
+    if not session[:best]
+      session[:best] = @game.wrong_guesses.length
+    else
+      session[:best] = [@game.wrong_guesses.length, session[:best]].min
     end
     erb :win # You may change/remove this line
   end
